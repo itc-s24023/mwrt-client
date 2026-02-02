@@ -1,0 +1,23 @@
+.centeredContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+
+.sideContainer {
+    display: flex;
+    flex-direction: column;
+
+    > * {
+        flex: 1;
+    }
+}
+
+
+@media (min-width: 800px) {
+    .sideContainer {
+        flex-direction: row;
+    }
+}

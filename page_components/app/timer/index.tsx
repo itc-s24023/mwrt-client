@@ -13,6 +13,10 @@ type Options = React.HTMLAttributes<HTMLDivElement> & {
         onStart?: () => void;
         onStop?: (time: number) => void;
         onLap?: (time: number) => void;
+
+        onTick?: (time: number) => void;
+
+        customTimeFormat?: (ms: number) => string;
     }
 };
 
@@ -38,40 +42,48 @@ export function Timer(options: Options) {
 
     }, []);
 
+
+
     const current = running ? time - startTime : resultTime;
+
+    
+    if (running) custom.onTick?.(current);
+
+
+    const displayTime = custom.customTimeFormat ? custom.customTimeFormat(current) : `Time: ${(current / 1000).toFixed(2)}s`;
     
     return <div {...MergeAttributes(props, {className: MergeClassNames(styles.timerContainer, !running ? styles.border_red : "")})}>
-        <div className={styles.timeDisplay}>Time: {(current / 1000).toFixed(2)}s</div>
+        <div className={styles.timeDisplay}>{displayTime}</div>
+        
+
         <div className={styles.controllContainer}>
-            <PlainButton className={buttonStyles} onClick={() => {
-                if (!running) {
-                    custom.onStart?.();
-                    setStartTime(performance.now());
-                    setRunning(true);
-                }
-            }} disabled={running}>
-                Start
-            </PlainButton>
-            
             <PlainButton className={buttonStyles} onClick={() => {
                 if (running) {
                     setRunning(false);
                     setResultTime(current);
                     setTime(0);
                     custom.onStop?.(current);
-                }
-            }} disabled={!running}>
-                Stop
-            </PlainButton>
 
+                } else {
+                    custom.onStart?.();
+                    setStartTime(performance.now());
+                    setRunning(true);
+
+                }
+            }} title={running ? "停止" : "開始"}>
+                {
+                    running ? "⏹" : "▶"
+                }
+            </PlainButton>
+            
             {
                 custom.allowLap &&
                 <PlainButton className={buttonStyles} onClick={() => {
                     if (running) {
                         custom.onLap?.(current);
                     }
-                }} disabled={!running}>
-                    Lap
+                }} disabled={!running} title="ラップタイム取得">
+                    ⏱
                 </PlainButton>
             }
         </div>
