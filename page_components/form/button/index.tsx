@@ -1,20 +1,18 @@
-import { MergeAttributes } from "@/libs/CustomAttribute";
+import { MergeAttributes, MergeClassNames } from "@/libs/CustomAttribute";
 import styles from "./index.module.css";
+import { SizeType } from "@/type";
 
-type Options = React.ButtonHTMLAttributes<HTMLButtonElement>
-
-
-export function PlainButton(props: Options) {
-    return (
-        <button {...MergeAttributes({className: styles.button}, props)}></button>
-    )
+type Options = React.ButtonHTMLAttributes<HTMLButtonElement> & {
+    size?: SizeType;
 }
 
-export const ButtonStyles = Object.freeze({
-    Large: styles.button_large,
-    Small: styles.button_small,
-    HoverEffect: styles.button_hoverEffect,
-    Rounded: styles.button_rounded,
-    HoverScale: styles.button_hoverScale,
-    Transition: styles.button_transition,
-})
+
+export function PlainButton({ size="medium", ...props }: Options) {
+    return (
+        <button
+            {...MergeAttributes(props, {
+                className: MergeClassNames(styles.button, styles[size])
+            })}
+        />
+    )
+}
