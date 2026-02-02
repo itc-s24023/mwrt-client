@@ -63,33 +63,6 @@ export function ResponsiveMedia(size: MediaSize, switchType: MediaSwitchType, in
 
 
 
-export type ResponsiveAttributeData = {
-    [key in MediaType]?: React.HTMLAttributes<HTMLElement>;
-}
-
-export function ResponsiveAttribute(data: ResponsiveAttributeData, onChange: (attribute: React.HTMLAttributes<HTMLElement>) => void) {
-
-    const desktop = data.desktop ?? data.tablet ?? data.mobile ?? {};
-    const tablet = data.tablet ?? desktop;
-    const mobile = data.mobile ?? tablet;
-
-    const width = window.innerWidth;
-    const initialAttribute = width <= 768 ? mobile : (width > 768 && width <= 1024 ? tablet : desktop);
-    onChange(initialAttribute);
-    console.log("Initial Responsive Attribute Set");
-
-    window.addEventListener("resize", (ev) => {
-        const width = window.innerWidth;
-        if (width <= 768) {
-            onChange(mobile);
-        } else if (width > 768 && width <= 1024) {
-            onChange(tablet);
-        } else {
-            onChange(desktop);
-        }
-    });
-}
-
 export function MediaStyle(type: MediaType, style: {[key in MediaType]?: React.CSSProperties}): React.CSSProperties {
     const desktop = style.desktop ?? style.tablet ?? style.mobile ?? {};
     const tablet = style.tablet ?? desktop;

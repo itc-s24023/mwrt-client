@@ -1,10 +1,11 @@
-import { PlainTitle } from "@/page_components/title";
+import { Content } from "./content";
 
 export default function Home() {
+
+
+
+
     return (
-        <div>
-            <PlainTitle>月次作業報告ツール</PlainTitle>
-            
-        </div>
+        <Content/>
     );
 }

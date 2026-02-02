@@ -1,0 +1,23 @@
+.container {
+    display: flex;
+    flex-direction: column;
+
+    width: 100vw;
+    height: 100vh;
+
+    overflow: hidden;
+}
+
+
+.head {
+    height: 60px;
+}
+
+.content {
+    flex: 1;
+    background-color: #ffffff;
+}
+
+.footer {
+    height: 40px;
+}

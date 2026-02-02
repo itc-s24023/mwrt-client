@@ -1,6 +1,6 @@
 .button {
     padding: 10px 20px;
-    background-color: #0070f3;
+    background-color: #b8b8b8;
     color: white;
     border: none;
     border-radius: 5px;
@@ -13,32 +13,27 @@
 }
 
 
-
-
-
-
-.button_large {
-    padding: 15px 30px;
-    font-size: 1.2em;
-}
-
-.button_small {
+.button.small {
     padding: 5px 10px;
-    font-size: 0.8em;
+    font-size: 12px;
 }
 
-.button_hoverEffect {
-    transition: background-color 0.3s ease;
+.button.medium {
+    padding: 10px 20px;
+    font-size: 14px;
 }
 
-.button_rounded {
-    border-radius: 25px;
+.button.large {
+    padding: 15px 30px;
+    font-size: 16px;
 }
 
-.button_hoverScale:hover {
-    padding: 12px 24px;
+.button.extraLarge {
+    padding: 20px 40px;
+    font-size: 18px;
 }
 
-.button_transition {
-    transition: padding 0.3s ease;
+.button.mega {
+    padding: 25px 50px;
+    font-size: 20px;
 }
