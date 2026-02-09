@@ -64,7 +64,7 @@ export function ResponsiveMedia(size: MediaSize, switchType: MediaSwitchType, in
 
 
 export function MediaStyle(type: MediaType, style: {[key in MediaType]?: React.CSSProperties}): React.CSSProperties {
-    const desktop = style.desktop ?? style.tablet ?? style.mobile ?? {};
+    const desktop = style.desktop ?? {};
     const tablet = style.tablet ?? desktop;
     const mobile = style.mobile ?? tablet;
     return {
