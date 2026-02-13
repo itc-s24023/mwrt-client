@@ -10,11 +10,34 @@
     flex-direction: column;
 }
 
+.taskSearchContainer.mobile {
+    padding: 0.3rem;
+    flex: none;
+    min-height: 150px;
+    max-height: 200px;
+}
+
+.taskSearchContainer.popup {
+    background-color: transparent;
+    box-shadow: none;
+    border-radius: 0;
+    padding: 0;
+}
+
 .title {
     font-size: 1rem;
     font-weight: bold;
     margin-bottom: 0.5rem;
     color: #333;
+}
+
+.popup .title {
+    display: none;
+}
+
+.mobile .title {
+    font-size: 0.85rem;
+    margin-bottom: 0.3rem;
 }
 
 .searchBox {
@@ -29,6 +52,11 @@
     border-radius: 4px;
     font-size: 0.85rem;
     font-family: inherit;
+}
+
+.mobile .searchInput {
+    padding: 0.3rem 1.8rem 0.3rem 0.3rem;
+    font-size: 0.75rem;
 }
 
 .searchInput:focus {
@@ -58,10 +86,87 @@
     color: #333;
 }
 
+.dateRangeBox {
+    display: flex;
+    gap: 0.4rem;
+    margin-bottom: 0.5rem;
+    align-items: flex-end;
+}
+
+.mobile .dateRangeBox {
+    gap: 0.3rem;
+    margin-bottom: 0.3rem;
+}
+
+.dateInput {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    cursor: pointer;
+}
+
+.dateLabel {
+    font-size: 0.7rem;
+    color: #666;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.mobile .dateLabel {
+    font-size: 0.6rem;
+}
+
+.dateField {
+    padding: 0.3rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-family: inherit;
+    cursor: pointer;
+}
+
+.mobile .dateField {
+    padding: 0.25rem;
+    font-size: 0.65rem;
+}
+
+.dateField:focus {
+    outline: none;
+    border-color: #3498db;
+}
+
+.clearDateButton {
+    padding: 0.3rem 0.6rem;
+    background-color: #f0f0f0;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 0.7rem;
+    cursor: pointer;
+    color: #666;
+    transition: all 0.2s;
+    white-space: nowrap;
+}
+
+.mobile .clearDateButton {
+    padding: 0.25rem 0.4rem;
+    font-size: 0.6rem;
+}
+
+.clearDateButton:hover {
+    background-color: #e0e0e0;
+    border-color: #ccc;
+}
+
 .resultCount {
     font-size: 0.75rem;
     color: #666;
     margin-bottom: 0.5rem;
+}
+
+.mobile .resultCount {
+    font-size: 0.65rem;
+    margin-bottom: 0.3rem;
 }
 
 .taskList {
@@ -72,6 +177,22 @@
     gap: 0.4rem;
 }
 
+.mobile .taskList {
+    gap: 0.3rem;
+}
+
+.popup .taskList {
+    margin-top: 1rem;
+    max-height: calc(80vh - 200px);
+}
+
+.noTasks {
+    text-align: center;
+    color: #999;
+    padding: 2rem 1rem;
+    font-size: 0.85rem;
+}
+
 .taskItem {
     padding: 0.5rem;
     border: 1px solid #e0e0e0;
@@ -79,6 +200,15 @@
     cursor: pointer;
     transition: all 0.2s;
     background-color: #fafafa;
+}
+
+.mobile .taskItem {
+    padding: 0.4rem;
+}
+
+.popup .taskItem {
+    background-color: #fff;
+    border: 1px solid #ddd;
 }
 
 .taskItem:hover {
@@ -94,12 +224,21 @@
     margin-bottom: 0.25rem;
 }
 
+.mobile .taskName {
+    font-size: 0.75rem;
+}
+
 .taskMeta {
     display: flex;
     gap: 0.5rem;
     align-items: center;
     font-size: 0.7rem;
     margin-bottom: 0.25rem;
+}
+
+.mobile .taskMeta {
+    font-size: 0.6rem;
+    gap: 0.3rem;
 }
 
 .category {
@@ -128,4 +267,9 @@
     color: #999;
     padding: 2rem 1rem;
     font-size: 0.85rem;
+}
+
+.mobile .emptyState {
+    padding: 1rem 0.5rem;
+    font-size: 0.75rem;
 }

@@ -1,10 +1,304 @@
 .container {
     display: flex;
     flex-direction: column;
-
-    background-color: #f0f0f0;
-    border: 1px solid #c0c0c0;
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
     border-radius: 8px;
-    padding: 16px;
-    margin: 8px;
+    padding: 1.5rem;
+    margin: 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+}
+
+.header {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid #f0f0f0;
+    gap: 0.5rem;
+}
+
+.taskHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.headerButtons {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.taskEditMode {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    width: 100%;
+}
+
+.taskNameInput {
+    width: 100%;
+    padding: 0.5rem;
+    border: 2px solid #2196F3;
+    border-radius: 4px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    font-family: inherit;
+}
+
+.taskNameInput:focus {
+    outline: none;
+    border-color: #1976D2;
+    box-shadow: 0 0 0 3px rgba(33, 150, 243, 0.1);
+}
+
+.taskNameInput:disabled {
+    background-color: #f5f5f5;
+    cursor: not-allowed;
+}
+
+.categorySelect {
+    padding: 0.4rem 0.6rem;
+    border: 1px solid #2196F3;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    background-color: white;
+}
+
+.categorySelect:disabled {
+    background-color: #f5f5f5;
+    cursor: not-allowed;
+}
+
+.editTaskButton {
+    padding: 0.4rem 0.8rem;
+    background-color: #2196F3;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    font-weight: 500;
+    transition: all 0.2s;
+    white-space: nowrap;
+}
+
+.editTaskButton:hover {
+    background-color: #1976D2;
+}
+
+.taskName {
+    margin: 0;
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #333;
+    flex: 1;
+}
+
+.taskInfo {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.taskInfo p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.label {
+    font-weight: 500;
+    color: #555;
+    margin-right: 0.5rem;
+}
+
+.category {
+    color: #2196F3;
+    font-weight: 600;
+}
+
+.memosSection {
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid #e0e0e0;
+}
+
+.memosSectionHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.75rem;
+}
+
+.memosTitle {
+    margin: 0;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #333;
+}
+
+.addMemoButton {
+    padding: 0.3rem 0.6rem;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    font-weight: 500;
+    transition: background-color 0.2s;
+}
+
+.addMemoButton:hover {
+    background-color: #45a049;
+}
+
+.memosList {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.memoItem {
+    background-color: #f8f9fa;
+    border-left: 3px solid #2196F3;
+    padding: 0.75rem;
+    border-radius: 4px;
+}
+
+.memoHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
+.memoContent {
+    margin: 0;
+    color: #444;
+    line-height: 1.5;
+    white-space: pre-wrap;
+}
+
+.memoMeta {
+    font-size: 0.8rem;
+    color: #999;
+}
+
+.editButton {
+    padding: 0.3rem 0.6rem;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    transition: background-color 0.2s;
+}
+
+.editButton:hover {
+    background-color: #45a049;
+}
+
+.editMode {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.memoTextarea {
+    width: 100%;
+    padding: 0.75rem;
+    border: 2px solid #2196F3;
+    border-radius: 4px;
+    font-family: inherit;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    resize: vertical;
+    min-height: 100px;
+}
+
+.memoTextarea:focus {
+    outline: none;
+    border-color: #1976D2;
+    box-shadow: 0 0 0 3px rgba(33, 150, 243, 0.1);
+}
+
+.memoTextarea:disabled {
+    background-color: #f5f5f5;
+    cursor: not-allowed;
+}
+
+.editButtons {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.saveButton {
+    padding: 0.5rem 1rem;
+    background-color: #2196F3;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: background-color 0.2s;
+}
+
+.saveButton:hover:not(:disabled) {
+    background-color: #1976D2;
+}
+
+.saveButton:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+.cancelButton {
+    padding: 0.5rem 1rem;
+    background-color: #f5f5f5;
+    color: #666;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: all 0.2s;
+}
+
+.cancelButton:hover:not(:disabled) {
+    background-color: #e0e0e0;
+    border-color: #999;
+}
+
+.cancelButton:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.deleteButton {
+    padding: 0.4rem 0.8rem;
+    background-color: #f44336;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    font-weight: 500;
+    transition: all 0.2s;
+    white-space: nowrap;
+}
+
+.deleteButton:hover {
+    background-color: #d32f2f;
+}
+
+.noMemos {
+    color: #999;
+    font-style: italic;
+    font-size: 0.9rem;
 }

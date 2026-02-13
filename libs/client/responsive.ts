@@ -76,7 +76,7 @@ export function MediaStyle(type: MediaType, style: {[key in MediaType]?: React.C
 
 
 export function MediaClassName(type: MediaType, className: {[key in MediaType]?: string}): string {
-    const desktop = className.desktop ?? className.tablet ?? className.mobile ?? "";
+    const desktop = className.desktop ?? "";
     const tablet = className.tablet ?? desktop;
     const mobile = className.mobile ?? tablet;
     return {

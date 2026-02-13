@@ -5,9 +5,16 @@
     border-radius: 6px;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
     flex: 1;
-    overflow: hidden;
+    overflow-y: auto;
     display: flex;
     flex-direction: column;
+    min-height: 0;
+}
+
+@media (max-width: 768px) {
+    .taskFormContainer {
+        padding: 0.3rem;
+    }
 }
 
 .title {
@@ -17,9 +24,22 @@
     color: #333;
 }
 
+@media (max-width: 768px) {
+    .title {
+        font-size: 0.85rem;
+        margin-bottom: 0.3rem;
+    }
+}
+
 .formGroup {
     margin-bottom: 0.5rem;
     position: relative;
+}
+
+@media (max-width: 768px) {
+    .formGroup {
+        margin-bottom: 0.4rem;
+    }
 }
 
 .label {
@@ -28,6 +48,13 @@
     font-weight: 500;
     color: #555;
     font-size: 0.85rem;
+}
+
+@media (max-width: 768px) {
+    .label {
+        font-size: 0.75rem;
+        margin-bottom: 0.2rem;
+    }
 }
 
 .required {
@@ -45,6 +72,15 @@
     font-size: 0.85rem;
     transition: border-color 0.2s;
     font-family: inherit;
+}
+
+@media (max-width: 768px) {
+    .input,
+    .select,
+    .textarea {
+        padding: 0.3rem;
+        font-size: 0.75rem;
+    }
 }
 
 .input:focus,

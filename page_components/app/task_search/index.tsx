@@ -1,37 +1,55 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
+import type { MediaType } from '@/libs/client/responsive';
+import { MediaClassName } from '@/libs/client/responsive';
+import { MergeClassNames } from '@/libs/CustomAttribute';
 import styles from './index.module.css';
 
-type Task = {
-    id: number;
-    task_name: string;
-    category: string;
-    memo: string;
-    created_date: string;
-};
-
 type TaskSearchProps = {
-    tasks: Task[];
-    onSelectTask?: (task: Task) => void;
+    media: MediaType;
+    onSearchConditionChange?: (searchQuery: string, startDate: string, endDate: string) => void;
+    onReset?: () => void;
+    initialStartDate?: string;
+    initialEndDate?: string;
 };
 
-export function TaskSearch({ tasks, onSelectTask }: TaskSearchProps) {
+export function TaskSearch({ media, onSearchConditionChange, onReset, initialStartDate = '', initialEndDate = '' }: TaskSearchProps) {
     const [searchQuery, setSearchQuery] = useState('');
+    const [startDate, setStartDate] = useState(initialStartDate);
+    const [endDate, setEndDate] = useState(initialEndDate);
+    const searchInputRef = useRef<HTMLInputElement>(null);
+    const startDateInputRef = useRef<HTMLInputElement>(null);
+    const endDateInputRef = useRef<HTMLInputElement>(null);
 
-    const filteredTasks = tasks.filter(task =>
-        task.task_name.toLowerCase().includes(searchQuery.toLowerCase())
-    );
+    // マウント時に検索入力にフォーカス
+    useEffect(() => {
+        searchInputRef.current?.focus();
+    }, []);
+
+    // 検索条件が変更されたら親に通知
+    useEffect(() => {
+        // 検索条件を親に通知
+        onSearchConditionChange?.(searchQuery, startDate, endDate);
+    }, [searchQuery, startDate, endDate, onSearchConditionChange]);
 
     return (
-        <div className={styles.taskSearchContainer}>
+        <div className={
+            MergeClassNames(
+                styles.taskSearchContainer,
+                MediaClassName(media, {
+                    tablet: styles.mobile,
+                })
+            )
+        }>
             <h3 className={styles.title}>タスク検索</h3>
             <div className={styles.searchBox}>
                 <input
+                    ref={searchInputRef}
                     type="text"
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
-                    placeholder="プロジェクト名で検索..."
+                    placeholder="タスク名で検索..."
                     className={styles.searchInput}
                 />
                 {searchQuery && (
@@ -43,33 +61,41 @@ export function TaskSearch({ tasks, onSelectTask }: TaskSearchProps) {
                     </button>
                 )}
             </div>
-            <div className={styles.resultCount}>
-                {filteredTasks.length}件のタスク
-            </div>
-            <div className={styles.taskList}>
-                {filteredTasks.length > 0 ? (
-                    filteredTasks.map((task) => (
-                        <div
-                            key={task.id}
-                            className={styles.taskItem}
-                            onClick={() => onSelectTask?.(task)}
-                        >
-                            <div className={styles.taskName}>{task.task_name}</div>
-                            <div className={styles.taskMeta}>
-                                <span className={styles.category}>{task.category}</span>
-                                <span className={styles.date}>
-                                    {new Date(task.created_date).toLocaleDateString('ja-JP')}
-                                </span>
-                            </div>
-                            {task.memo && (
-                                <div className={styles.taskMemo}>{task.memo}</div>
-                            )}
-                        </div>
-                    ))
-                ) : (
-                    <div className={styles.emptyState}>
-                        {searchQuery ? '検索結果がありません' : 'タスクがありません'}
-                    </div>
+            <div className={styles.dateRangeBox}>
+                <div className={styles.dateInput} >
+                    <label className={styles.dateLabel}>開始日</label>
+                    <input
+                        ref={startDateInputRef}
+                        type="date"
+                        value={startDate}
+                        onChange={(e) => setStartDate(e.target.value)}
+                        className={styles.dateField}
+                        onClick={(e) => e.currentTarget.showPicker?.()}
+                    />
+                </div>
+                <div className={styles.dateInput} >
+                    <label className={styles.dateLabel}>終了日</label>
+                    <input
+                        ref={endDateInputRef}
+                        type="date"
+                        value={endDate}
+                        onChange={(e) => setEndDate(e.target.value)}
+                        className={styles.dateField}
+                        onClick={(e) => e.currentTarget.showPicker?.()}
+                    />
+                </div>
+                {(startDate || endDate || searchQuery) && (
+                    <button
+                        onClick={() => {
+                            setSearchQuery('');
+                            setStartDate(initialStartDate);
+                            setEndDate(initialEndDate);
+                            onReset?.();
+                        }}
+                        className={styles.clearDateButton}
+                    >
+                        クリア
+                    </button>
                 )}
             </div>
         </div>

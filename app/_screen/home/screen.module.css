@@ -7,6 +7,53 @@
     overflow: hidden;
 }
 
+.homeContainer.mobile {
+    padding: 0.3rem;
+
+    .rightPanel {
+        display: none;
+    }
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.5rem;
+    gap: 1rem;
+}
+
+.title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    flex: 1;
+}
+
+.searchButton {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 2.5rem;
+    height: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 1.2rem;
+    transition: all 0.2s;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.searchButton:hover {
+    background-color: #2980b9;
+    transform: scale(1.05);
+}
+
+.searchButton:active {
+    transform: scale(0.95);
+}
+
 .leftPanel {
     flex: 1;
     display: flex;
@@ -15,10 +62,187 @@
     gap: 0.5rem;
 }
 
+.searchInfo {
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    padding: 0.75rem;
+    border: 1px solid #e0e0e0;
+    flex-shrink: 0;
+}
+
+.searchInfoTitle {
+    font-size: 0.9rem;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 0.5rem;
+    padding-bottom: 0.3rem;
+    border-bottom: 2px solid #3498db;
+}
+
+.searchCondition {
+    font-size: 0.8rem;
+    color: #555;
+    margin-bottom: 0.3rem;
+    padding: 0.2rem 0;
+}
+
+.conditionLabel {
+    font-weight: 600;
+    color: #3498db;
+}
+
+.noSearchCondition {
+    font-size: 0.8rem;
+    color: #999;
+    font-style: italic;
+    padding: 0.3rem 0;
+}
+
+.totalWorkTime {
+    margin-top: 0.5rem;
+    padding-top: 0.5rem;
+    border-top: 1px solid #e0e0e0;
+    font-size: 0.85rem;
+}
+
+.workTimeLabel {
+    font-weight: 600;
+    color: #2c3e50;
+}
+
+.workTimeValue {
+    color: #27ae60;
+    font-weight: bold;
+    margin-left: 0.5rem;
+    font-size: 0.9rem;
+}
+
+.taskCount {
+    margin-top: 0.3rem;
+    font-size: 0.8rem;
+}
+
+.taskCountLabel {
+    font-weight: 600;
+    color: #2c3e50;
+}
+
+.taskCountValue {
+    color: #3498db;
+    font-weight: bold;
+    margin-left: 0.5rem;
+}
+
 .rightPanel {
     flex: 1;
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
+    overflow-y: auto;
+}
+
+.loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    font-size: 1rem;
+    color: #666;
+}
+
+.searchPopup {
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    max-width: 600px;
+    width: 90%;
+    max-height: 80vh;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
     overflow: hidden;
+}
+
+.popupHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem;
+    border-bottom: 2px solid #e0e0e0;
+    background-color: #f8f9fa;
+}
+
+.popupTitle {
+    font-size: 1.3rem;
+    font-weight: bold;
+    margin: 0;
+    color: #333;
+}
+
+.closeButton {
+    background-color: transparent;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #666;
+    width: 2rem;
+    height: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: all 0.2s;
+}
+
+.closeButton:hover {
+    background-color: #e0e0e0;
+    color: #333;
+}
+
+.popupContent {
+    flex: 1;
+    overflow-y: auto;
+    padding: 1rem;
+}
+
+@media (max-width: 768px) {
+    .searchPopup {
+        width: 95%;
+        max-height: 90vh;
+    }
+
+    .popupHeader {
+        padding: 0.8rem;
+    }
+
+    .popupTitle {
+        font-size: 1.1rem;
+    }
+
+    .popupContent {
+        padding: 0.8rem;
+    }
+
+    .searchInfo {
+        padding: 0.5rem;
+    }
+
+    .searchInfoTitle {
+        font-size: 0.8rem;
+    }
+
+    .searchCondition,
+    .noSearchCondition {
+        font-size: 0.7rem;
+    }
+
+    .totalWorkTime,
+    .taskCount {
+        font-size: 0.75rem;
+    }
+
+    .workTimeValue,
+    .taskCountValue {
+        font-size: 0.8rem;
+    }
 }

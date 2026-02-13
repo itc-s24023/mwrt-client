@@ -15,3 +15,12 @@
     display: table-cell;
     vertical-align: middle;
 }
+
+.opaque {
+    background-color: rgb(0, 0, 0);
+}
+
+.blurred {
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(4px);
+}

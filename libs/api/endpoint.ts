@@ -33,7 +33,7 @@ type Task_List_Query = {
 export const API_Request_Task_List = (query?: Task_List_Query) => API_Request<Task_List_Query, undefined, DB_Task_Raw[], DB_Task[]>(
     {
         method: "GET",
-        path: "/task/list",
+        path: "/task",
         query,
         responseWrap(body) {
             const tasks: DB_Task[] = body.map(RawTask_toFormattedData);
@@ -48,7 +48,7 @@ export const API_Request_Task_List = (query?: Task_List_Query) => API_Request<Ta
 export const API_Request_Task_Detail = (taskId: DB_Task_ID) => API_Request<undefined, undefined, DB_Task_Raw<true>, DB_Task<true>>(
     {
         method: "GET",
-        path: `/task/detail/${taskId}`,
+        path: `/task/${taskId}`,
         responseWrap: RawTask_toFormattedData_Detail
     }
 )
@@ -60,12 +60,37 @@ export const API_Request_Task_Detail = (taskId: DB_Task_ID) => API_Request<undef
 type Task_Add_Body = {
     name: string;
     categoryId: DB_Category_ID;
-    scheduledStartAt?: Date;
+    scheduledStartAt: Date;
 }
 export const API_Request_Task_Add = (data: Task_Add_Body) => API_Request<undefined, toJson<Task_Add_Body>, DB_Task_Raw, DB_Task>(
     {
         method: "POST",
-        path: "/task/add",
+        path: "/task",
+        body: JSON.parse(JSON.stringify(data)),
+        responseWrap: RawTask_toFormattedData
+    }
+);
+
+
+
+export const API_Request_Task_Delete = (taskId: DB_Task_ID) => API_Request<undefined, undefined, void, void>(
+    {
+        method: "DELETE",
+        path: `/task/delete/${taskId}`,
+        responseWrap: () => undefined
+    }
+);
+
+
+
+type Task_Update_Body = {
+    name?: string;
+    categoryId?: DB_Category_ID;
+}
+export const API_Request_Task_Update = (taskId: DB_Task_ID, data: Task_Update_Body) => API_Request<undefined, toJson<Task_Update_Body>, DB_Task_Raw, DB_Task>(
+    {
+        method: "PUT",
+        path: `/task/update/${taskId}`,
         body: JSON.parse(JSON.stringify(data)),
         responseWrap: RawTask_toFormattedData
     }
@@ -84,6 +109,21 @@ export const API_Request_Memo_List = (query?: Memo_List_Query) => API_Request<Me
         method: "GET",
         path: "/memo/list",
         query
+    }
+);
+
+
+
+type Memo_Add_Body = {
+    taskId: DB_Task_ID;
+    content: string;
+}
+export const API_Request_Memo_Add = (data: Memo_Add_Body) => API_Request<undefined, toJson<Memo_Add_Body>, DB_Memo_Raw, DB_Memo>(
+    {
+        method: "POST",
+        path: "/memo/add",
+        body: JSON.parse(JSON.stringify(data)),
+        responseWrap: RawMemo_toFormattedData
     }
 );
 
