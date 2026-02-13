@@ -5,6 +5,7 @@ import { Controll_APP_Loading } from "@/page_components/app/controll_loading";
 import { ScreenMap } from "@/screen/screen";
 import { useEffect, useState } from "react";
 import { Screen_Home } from "./home/screen";
+import { Screen_Details } from "./details/screen";
 
 export type ScreenIds = "home" | "details";
 
@@ -33,7 +34,7 @@ export function Screen() {
 
     const Screens: ScreenMap<ScreenIds> = {
         "home":    () => <Screen_Home media={media} selectScreen={setScreen} backward={() => setScreen("home")}/>,
-        "details": () => <div>Details Screen - {media}</div>,
+        "details": () => <Screen_Details data={undefined} media={media} selectScreen={setScreen} backward={() => setScreen("home")}/>,
     }
     
     
